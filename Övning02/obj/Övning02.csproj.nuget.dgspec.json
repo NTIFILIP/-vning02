@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\hellgren.filip\\Desktop\\Code\\C#\\LektionsUpgifter\\Övning02\\Övning02\\Övning02.csproj": {}
+    "C:\\Users\\hellgren.filip\\Desktop\\Code\\C#\\LektionsUpgifter\\Övning02\\Övning02\\Övning02.csproj": {}
   },
   "projects": {
-    "c:\\Users\\hellgren.filip\\Desktop\\Code\\C#\\LektionsUpgifter\\Övning02\\Övning02\\Övning02.csproj": {
+    "C:\\Users\\hellgren.filip\\Desktop\\Code\\C#\\LektionsUpgifter\\Övning02\\Övning02\\Övning02.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\hellgren.filip\\Desktop\\Code\\C#\\LektionsUpgifter\\Övning02\\Övning02\\Övning02.csproj",
+        "projectUniqueName": "C:\\Users\\hellgren.filip\\Desktop\\Code\\C#\\LektionsUpgifter\\Övning02\\Övning02\\Övning02.csproj",
         "projectName": "Övning02",
-        "projectPath": "c:\\Users\\hellgren.filip\\Desktop\\Code\\C#\\LektionsUpgifter\\Övning02\\Övning02\\Övning02.csproj",
+        "projectPath": "C:\\Users\\hellgren.filip\\Desktop\\Code\\C#\\LektionsUpgifter\\Övning02\\Övning02\\Övning02.csproj",
         "packagesPath": "C:\\Users\\hellgren.filip\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\hellgren.filip\\Desktop\\Code\\C#\\LektionsUpgifter\\Övning02\\Övning02\\obj\\",
+        "outputPath": "C:\\Users\\hellgren.filip\\Desktop\\Code\\C#\\LektionsUpgifter\\Övning02\\Övning02\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
