@@ -1,7 +1,7 @@
 public class Bank
 {
-    List<Customer> customers = new List<Customer>();
-    List<Account> accounts = new List<Account>();
+    Dictionary<int, Customer> customers = new Dictionary<int, Customer>();
+    Dictionary<int, Account> accounts = new Dictionary<int, Account>();
 
     int transactionsMade = 0;
     int balanceTransferred = 0;
@@ -21,7 +21,7 @@ public class Bank
             System.Console.WriteLine("There is already a customer with this SSN!");
         } else {
             newCustomer = new Customer(customerName, socialSecNum);
-            customers.Add(newCustomer);
+            customers.Add(socialSecNum, newCustomer);
             System.Console.WriteLine("Account successfully created!");       
         }        
         return newCustomer;
@@ -29,29 +29,19 @@ public class Bank
 
     public Account CreateAccount(Decimal balance) {
         Account newAccount = new Account(balance, accounts.Count);
-        accounts.Add(newAccount);
+        accounts.Add(accounts.Count, newAccount);
         return newAccount;
     }
 
     public Customer FindCustomer(int socialSecNum) {
         Customer foundCustomer = null;
-        foreach (Customer customer in customers) {
-            if (customer.GetId() == socialSecNum) {
-                foundCustomer = customer;
-                break;
-            }
-        }
+        customers.TryGetValue(socialSecNum, out foundCustomer);
         return foundCustomer;
     }
 
     public Account FindAccount(int id) {
         Account foundAccount = null;
-        foreach (Account account in accounts) {
-            if (account.ID == id) {
-                foundAccount = account;
-                break;
-            }
-        }
+        accounts.TryGetValue(id, out foundAccount);
         return foundAccount;
     }
 }

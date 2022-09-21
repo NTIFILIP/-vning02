@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-using System.ComponentModel;
-Bank bank = new Bank("Bästa banken");
+﻿Bank bank = new Bank("Bästa banken");
 
 string GetChoiceInput(string prompt, string[] choices) {
     string input;
@@ -76,7 +74,7 @@ void ConnectAccount() {
         return;
     }
 
-    string prompt = "Please input the ID of the account you wish to connect: ";
+    string prompt = $"Please input the ID of the account you wish to connect to '{customer.Name}': ";
     int accountId = GetIntInput(prompt);
     Account account = bank.FindAccount(accountId);
     if (account == null) {
@@ -89,7 +87,7 @@ void ConnectAccount() {
 }
 
 while (true) {
-    string prompt = $"\nWelcome to '{bank.Name}', what would you like to do today?"
+    string prompt = $"Welcome to '{bank.Name}', what would you like to do today?"
     + "\n[1]: New Customer"
     + "\n[2]: Create Account"
     + "\n[3]: Connect Account to Customer"
@@ -115,6 +113,7 @@ while (true) {
         case "5":
             break; 
     }
+    System.Console.WriteLine("");
 }
 
 
