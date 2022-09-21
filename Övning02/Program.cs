@@ -1,6 +1,6 @@
-﻿Bank bank = new Bank("Bästa banken");
-
-
+﻿using System.Linq.Expressions;
+using System.ComponentModel;
+Bank bank = new Bank("Bästa banken");
 
 string GetChoiceInput(string prompt, string[] choices) {
     string input;
@@ -18,31 +18,75 @@ string GetChoiceInput(string prompt, string[] choices) {
     return input;
 }
 
-void CreateNewCustomer() {
-    Console.Write("Please input your name to continue: ");
-    string name = Console.ReadLine().ToLower();
+bool ValidateSocialSecNum(int num) {
+    return num >= 0;
+}
 
-    uint number;
+int GetIntInput(string prompt, Func<int, bool> validationFunc=null) {
+    int number;
     while (true) {
-        Console.Write("\nPlease input your social security number (SSN): ");
-        bool success = uint.TryParse(Console.ReadLine(), out number);
-        if (success) {
+        Console.Write(prompt);
+        bool success = int.TryParse(Console.ReadLine(), out number);
+        if (success && (validationFunc==null || validationFunc(number))) {
             break;
         } else {
             Console.Clear();
             System.Console.WriteLine("Your input was invalid, try again!\n");
         }
     }
+    return number;
+}
+
+int GetSocialSecNum() {
+    string prompt = "Please input your social security number (SSN): ";
+    int socialSecNum = GetIntInput(prompt, ValidateSocialSecNum);
+    return socialSecNum;
+}
+
+void CreateNewCustomer() {
+    Console.Write("Please input your name to continue: ");
+    string name = Console.ReadLine().ToLower();
+
+    int socialSecNum = GetSocialSecNum();
 
     Console.Clear();
-    bank.CreateCustomer(name, number);
+    bank.CreateCustomer(name, socialSecNum);
 }
 
 void CreateNewAccount() {
-
+    decimal balance;
+    while (true) {
+        Console.Write("\nPlease input the starting balance of the account: ");
+        bool success = decimal.TryParse(Console.ReadLine(), out balance);
+        if (success) {
+            break;
+        } else {
+            Console.Clear();
+            System.Console.WriteLine("Your input was invalid, try again!\n");
+        }
+    } 
+    Account newAccount = bank.CreateAccount(balance);
 }
 
-Customer currentCustomer;
+void ConnectAccount() {
+    int socialSecNum = GetSocialSecNum();
+    Customer customer = bank.FindCustomer(socialSecNum);
+    if (customer == null) {
+        System.Console.WriteLine("There is no customer with that SSN!");
+        return;
+    }
+
+    string prompt = "Please input the ID of the account you wish to connect: ";
+    int accountId = GetIntInput(prompt);
+    Account account = bank.FindAccount(accountId);
+    if (account == null) {
+        System.Console.WriteLine("There is no account with this ID!");
+        return;
+    }
+
+    account.SetOwner(customer);
+
+}
 
 while (true) {
     string prompt = $"\nWelcome to '{bank.Name}', what would you like to do today?"
@@ -61,8 +105,10 @@ while (true) {
             CreateNewCustomer();
             break; 
         case "2":
+            CreateNewAccount();
             break;
         case "3":
+            ConnectAccount();
             break; 
         case "4":
             break;

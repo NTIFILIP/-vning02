@@ -13,7 +13,7 @@ public class Bank
         this.Name = name;
     }
 
-    public Customer CreateCustomer(string customerName, uint socialSecNum) {
+    public Customer CreateCustomer(string customerName, int socialSecNum) {
         Customer newCustomer = null;
         Customer alreadyExistingCustomer = FindCustomer(socialSecNum);
 
@@ -27,13 +27,13 @@ public class Bank
         return newCustomer;
     }
 
-    public Account CreateAccount(Customer customer, Decimal balance) {
-        Account newAccount = new Account(customer, balance);
+    public Account CreateAccount(Decimal balance) {
+        Account newAccount = new Account(balance, accounts.Count);
         accounts.Add(newAccount);
         return newAccount;
     }
 
-    public Customer FindCustomer(uint socialSecNum) {
+    public Customer FindCustomer(int socialSecNum) {
         Customer foundCustomer = null;
         foreach (Customer customer in customers) {
             if (customer.GetId() == socialSecNum) {
@@ -42,5 +42,16 @@ public class Bank
             }
         }
         return foundCustomer;
+    }
+
+    public Account FindAccount(int id) {
+        Account foundAccount = null;
+        foreach (Account account in accounts) {
+            if (account.ID == id) {
+                foundAccount = account;
+                break;
+            }
+        }
+        return foundAccount;
     }
 }

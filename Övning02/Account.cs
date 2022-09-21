@@ -2,10 +2,17 @@ public class Account
 {
     Customer owner;
     Decimal balance;
-    int ID;
+    public int ID {get; private set;}
     List<Transaction> transactions = new List<Transaction>();
-    public Account(Customer owner, Decimal balance) {
-        this.owner = owner;
+    public Account(Decimal balance, int accountId) {
         this.balance = balance;
+        this.ID = accountId;
+
+        Console.Clear();
+        System.Console.WriteLine($"A new account was created with the ID: {accountId}\n");
+    }
+
+    public void SetOwner(Customer newOwner) {
+        owner = newOwner;
     }
 }

@@ -1,17 +1,17 @@
 public class Customer
 {
-    uint socialSecurityNum;
+    int socialSecurityNum;
 
     public string Name {
         get; private set;
     }
     List<Account> accounts = new List<Account>();
-    public Customer(string name, uint socialSecNum) {
+    public Customer(string name, int socialSecNum) {
         this.Name = name;
         this.socialSecurityNum = socialSecNum;
     }
 
-    public uint GetId() {
+    public int GetId() {
         return socialSecurityNum;
     }
 }
